@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\adler32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\compress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\crc32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\deflate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\gzclose.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\gzlib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\gzread.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\gzwrite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\inflate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\infback.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\inftrees.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\inffast.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\trees.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\uncompr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\zutil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zconf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\zlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\crc32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\deflate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\gzguts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\inffast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\inffixed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\inflate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\inftrees.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\trees.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\zutil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{6C38902E-6445-3961-9E14-AF3860C3F23E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{53664C3A-B41A-384C-8C29-0FD0FC42916B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

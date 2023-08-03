@@ -32,6 +32,13 @@
 #include "FrameEventTracing.h"
 #include "AssetUploader.h"
 #include "Gui.h"
+#include <DirectXMath.h>
+
+#define SAFE_RELEASE(obj) if(obj != nullptr) { obj->Release(); obj.Detach(); obj = nullptr; }
+
+std::vector<UINT8> GenerateTextureData(UINT width, UINT hight, UINT pixelSize);
+void GenerateTexture(UINT width, UINT height, UINT pixelSize, ID3D12Device * pDevice, ID3D12GraphicsCommandList1 * cmdList,
+    ID3D12Resource * textureUploadHeap, ID3D12Resource * *out_destinationTexture, D3D12_CPU_DESCRIPTOR_HANDLE srvDescriptorHandle);
 
 class Scene
 {
@@ -61,6 +68,7 @@ public:
     void ToggleFeedback() { m_args.m_showFeedbackMaps = !m_args.m_showFeedbackMaps; }
     void ToggleMinMipView() { m_args.m_visualizeMinMip = !m_args.m_visualizeMinMip; }
     void ToggleRollerCoaster() { m_args.m_cameraRollerCoaster = !m_args.m_cameraRollerCoaster; }
+    void ToggleVirtualTexturing() { m_args.m_useVirtualTexturing = !m_args.m_useVirtualTexturing; }
     void SetVisualizationMode(CommandLineArgs::VisualizationMode in_mode) { m_args.m_dataVisualizationMode = in_mode; }
 
     void ToggleFrustum() { m_args.m_visualizeFrustum = !m_args.m_visualizeFrustum; HandleUiToggleFrustum(); }
@@ -135,6 +143,24 @@ private:
     ComPtr<ID3D12DescriptorHeap> m_dsvHeap;
     ComPtr<ID3D12DescriptorHeap> m_rtvHeap;
 
+    // FR: Descriptor heaps and root signatures for objects fully loaded into memory.
+    ComPtr<ID3D12CommandAllocator> m_commandAllocator;
+    ComPtr<ID3D12DescriptorHeap> m_srvHeapSimpleObject;
+    ComPtr<ID3D12RootSignature> m_rootSignatureSimpleObject;
+    ComPtr<ID3D12PipelineState> m_pipelineStateSimpleObject;
+	struct SimpleVertex
+	{
+		DirectX::XMFLOAT3 position;
+        DirectX::XMFLOAT2 uv;
+	};
+	// Resources for simple objects
+	ComPtr<ID3D12Resource> m_vertexBufferSimpleObject;
+	D3D12_VERTEX_BUFFER_VIEW m_vertexBufferViewSimpleObject;
+	ComPtr<ID3D12Resource> m_textureSimpleObject;
+    static const UINT m_textureWidthSimpleObject = 256;
+    static const UINT m_textureHeightSimpleObject = 256;
+	static const UINT m_texturePixelSizeSimpleObject = 4;    // The number of bytes used to represent a pixel in the texture.
+
     UINT m_rtvDescriptorSize{ 0 };
     UINT m_srvUavCbvDescriptorSize{ 0 };
     UINT m_dsvDescriptorSize{ 0 };
@@ -166,6 +192,8 @@ private:
     Gui* m_pGui{ nullptr };
     Gui::ButtonChanges m_uiButtonChanges; // track changes in UI settings
 
+    bool m_bVirtualTexturePrevFrame;
+
     class TextureViewer* m_pTextureViewer{ nullptr };
     class BufferViewer* m_pMinMipMapViewer{ nullptr };
     class BufferViewer* m_pFeedbackViewer{ nullptr };
@@ -193,6 +221,15 @@ private:
     void CreateConstantBuffers();
     void CreateSampler();
     //-------------------------------
+
+    // FR: Functions for loading scenes fully into memory.
+	void LoadPipeline();
+    void ReleasePipeline();
+	void LoadAssets();
+    void ReleaseAssets();
+    //std::vector<UINT8> GenerateTextureData();
+    //void GenerateTexture(ID3D12Resource* textureUploadHeap, ID3D12Resource** out_destinationTexture);
+    void PopulateCommandList();
 
     // just for the sampler bias, which can be adjusted by the UI
     ComPtr<ID3D12DescriptorHeap> m_samplerHeap;

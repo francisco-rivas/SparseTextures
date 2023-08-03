@@ -30,6 +30,7 @@
 #include "CommandLineArgs.h"
 #include "SamplerFeedbackStreaming.h"
 #include "CreateSphere.h"
+#include "BasicTexture.h"
 
 class AssetUploader;
 
@@ -39,6 +40,8 @@ namespace SceneObjects
     {
         HeapOffsetTexture = 0,
         HeapOffsetFeedback,
+        // FR: non-streamed texture
+        HeapOffsetNonStreamedTexture,
         NumEntries
     };
 
@@ -100,7 +103,13 @@ namespace SceneObjects
 
         void SetFeedbackEnabled(bool in_value) { m_feedbackEnabled = in_value; }
 
+        void SetVirtualTexturesEnabled(bool in_value) { m_useVirtualTexturing = in_value; }
+        static void SetCommandList(ComPtr<ID3D12GraphicsCommandList1> cmdList) { s_commandList = cmdList; }
+        static void SetCommandQueue(ComPtr<ID3D12CommandQueue> cmdQueue) { s_commandQueue = cmdQueue; }
+
         void SetAxis(DirectX::XMVECTOR in_vector) { m_axis.v = in_vector; }
+
+        static std::wstring GetAssetFullPath(const std::wstring& in_filename);
     protected:
         // pass in a location in a descriptor heap where this can write 3 descriptors
         BaseObject(
@@ -114,6 +123,7 @@ namespace SceneObjects
         template<typename T> using ComPtr = Microsoft::WRL::ComPtr<T>;
 
         bool m_feedbackEnabled{ true };
+        bool m_useVirtualTexturing{ true };
         TileUpdateManager* m_pTileUpdateManager{ nullptr };
 
         DirectX::XMMATRIX m_matrix{ DirectX::XMMatrixIdentity() };
@@ -135,8 +145,18 @@ namespace SceneObjects
 
         StreamingResource* m_pStreamingResource{ nullptr };
 
+        //FR: Allocate a simple non-streamed texture for comparisons
+        ComPtr<ID3D12Resource> m_pNonStreamedTexture;
+        Texture m_nonStreamedTexture;
+        CD3DX12_CPU_DESCRIPTOR_HANDLE m_nonStreamedTextureHandle;
+        static ComPtr<ID3D12GraphicsCommandList1> s_commandList;
+        static ComPtr< ID3D12CommandQueue> s_commandQueue;
+
         void CreatePipelineState(
-            const wchar_t* in_ps, const wchar_t* in_psFB, const wchar_t* in_vs,
+            const wchar_t* in_ps, const wchar_t* in_psFB,
+            // FR: pixel shader for simple texture lookups
+            const wchar_t* in_psNoStreaming,
+            const wchar_t* in_vs,
             ID3D12Device* in_pDevice, UINT in_sampleCount,
             const D3D12_RASTERIZER_DESC& in_rasterizerDesc,
             const D3D12_DEPTH_STENCIL_DESC& in_depthStencilDesc);
@@ -153,6 +173,12 @@ namespace SceneObjects
         {
             in_pCommandList->SetGraphicsRootSignature(m_rootSignatureFB.Get());
             in_pCommandList->SetPipelineState(m_pipelineStateFB.Get());
+        }
+
+        void SetRootSigNoStreaming(ID3D12GraphicsCommandList1* in_pCommandList)
+        {
+            in_pCommandList->SetGraphicsRootSignature(m_rootSignatureNoStreaming.Get());
+            in_pCommandList->SetPipelineState(m_pipelineStateNoStreaming.Get());
         }
 
         ID3D12Device* GetDevice();
@@ -176,11 +202,15 @@ namespace SceneObjects
         ComPtr<ID3D12RootSignature> m_rootSignatureFB;
         ComPtr<ID3D12PipelineState> m_pipelineStateFB;
 
+        // FR: Root signature and PSO for simple texture loaded directly from disk, no streaming.
+        ComPtr<ID3D12RootSignature> m_rootSignatureNoStreaming;
+        ComPtr<ID3D12PipelineState> m_pipelineStateNoStreaming;
+
         //-----------------------------------
         // tile memory management
         //-----------------------------------
 
-        std::wstring GetAssetFullPath(const std::wstring& in_filename);
+        //std::wstring GetAssetFullPath(const std::wstring& in_filename);
 
         UINT m_srvUavCbvDescriptorSize{ 0 };
     };

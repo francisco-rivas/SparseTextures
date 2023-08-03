@@ -1,0 +1,9 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets(2116,5): warning : The referenced project 'D:\MappedFolder\GitRoot\SamplerFeedbackStreaming\build\ZERO_CHECK.vcxproj' does not exist.
+  Building Custom Rule D:/MappedFolder/GitRoot/SamplerFeedbackStreaming/MiniEngine/CMakeLists.txt
+  CMake is re-running because D:/MappedFolder/GitRoot/SamplerFeedbackStreaming/build/MiniEngine/CMakeFiles/generate.stamp is out-of-date.
+    the file 'D:/MappedFolder/GitRoot/SamplerFeedbackStreaming/Script/utility.cmake'
+    is newer than 'D:/MappedFolder/GitRoot/SamplerFeedbackStreaming/build/MiniEngine/CMakeFiles/generate.stamp.depend'
+    result='0'
+CUSTOMBUILD : CMake error : The source directory "D:/MappedFolder/GitRoot/SamplerFeedbackStreaming" does not appear to contain CMakeLists.txt.
+  Specify --help for usage, or press the help button on the CMake GUI.
+C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(248,5): error MSB8066: Custom build for '..\..\MiniEngine\CMakeLists.txt' exited with code 1.

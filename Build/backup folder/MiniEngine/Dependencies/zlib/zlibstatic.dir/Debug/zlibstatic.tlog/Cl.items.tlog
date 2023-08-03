@@ -1,0 +1,15 @@
+D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\adler32.c;D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zlibstatic.dir\Debug\adler32.obj
+D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\compress.c;D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zlibstatic.dir\Debug\compress.obj
+D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\crc32.c;D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zlibstatic.dir\Debug\crc32.obj
+D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\deflate.c;D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zlibstatic.dir\Debug\deflate.obj
+D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\gzclose.c;D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zlibstatic.dir\Debug\gzclose.obj
+D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\gzlib.c;D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zlibstatic.dir\Debug\gzlib.obj
+D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\gzread.c;D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zlibstatic.dir\Debug\gzread.obj
+D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\gzwrite.c;D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zlibstatic.dir\Debug\gzwrite.obj
+D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\inflate.c;D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zlibstatic.dir\Debug\inflate.obj
+D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\infback.c;D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zlibstatic.dir\Debug\infback.obj
+D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\inftrees.c;D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zlibstatic.dir\Debug\inftrees.obj
+D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\inffast.c;D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zlibstatic.dir\Debug\inffast.obj
+D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\trees.c;D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zlibstatic.dir\Debug\trees.obj
+D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\uncompr.c;D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zlibstatic.dir\Debug\uncompr.obj
+D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\zlib\zutil.c;D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\zlib\zlibstatic.dir\Debug\zutil.obj

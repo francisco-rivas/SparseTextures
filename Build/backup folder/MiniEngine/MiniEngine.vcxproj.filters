@@ -1,0 +1,1313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\CMakeFiles\MiniEngine.dir\cmake_pch.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\BitonicSort.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\BuddyAllocator.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\BufferManager.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Camera.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\CameraController.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Color.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ColorBuffer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\CommandAllocatorPool.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\CommandContext.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\CommandListManager.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\CommandSignature.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Cube.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\DDSTextureLoader.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\DepthBuffer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\DepthOfField.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\DescriptorHeap.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Display.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\DynamicDescriptorHeap.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\EngineProfiling.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\EngineTuning.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\FXAA.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\FileUtility.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\GameCore.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\GpuBuffer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\GpuTimeManager.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\GraphRenderer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\GraphicsCommon.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\GraphicsCore.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\IExtraRenderingBuffers.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ImGuiModule.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ImageScaling.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Input.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\LinearAllocator.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Log.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Math\BoundingSphere.cpp">
+      <Filter>Core\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Math\Frustum.cpp">
+      <Filter>Core\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Math\Random.cpp">
+      <Filter>Core\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\MotionBlur.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ParticleEffect.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ParticleEffectManager.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ParticleEmissionProperties.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\PipelineState.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\PixelBuffer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\PostEffects.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ReadbackBuffer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\RootSignature.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\SSAO.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\SamplerManager.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ShadowBuffer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ShadowCamera.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\SystemTime.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\TemporalEffects.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\TextRenderer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Texture.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\TextureManager.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\UploadBuffer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Util\CommandLineArg.cpp">
+      <Filter>Core\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Utility.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\VRS.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\VRSScreenshot.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\pch.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Animation.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\BuildH3D.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\IndexOptimizePostTransform.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\LightManager.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\MeshConvert.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Model.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\ModelConvert.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\ModelH3D.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\ModelLoader.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\ParticleEffects.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Renderer.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\SponzaRenderer.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\TextureConvert.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\glTF.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\imgui\imgui.cpp">
+      <Filter>Dependencies\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\imgui\imgui_draw.cpp">
+      <Filter>Dependencies\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\imgui\imgui_tables.cpp">
+      <Filter>Dependencies\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\imgui\imgui_widgets.cpp">
+      <Filter>Dependencies\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\imgui\backends\imgui_impl_win32.cpp">
+      <Filter>Dependencies\imgui\backends</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\BitonicSort.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\BuddyAllocator.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\BufferManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Camera.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\CameraController.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Color.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ColorBuffer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\CommandAllocatorPool.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\CommandContext.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\CommandListManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\CommandSignature.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Cube.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\DDSTextureLoader.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\DepthBuffer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\DepthOfField.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\DescriptorHeap.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Display.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\DynamicDescriptorHeap.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\EngineProfiling.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\EngineTuning.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\EsramAllocator.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\FXAA.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\FileUtility.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Fonts\consola24.h">
+      <Filter>Core\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\GameCore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\GameInput.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\GpuBuffer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\GpuResource.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\GpuTimeManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\GraphRenderer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\GraphicsCommon.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\GraphicsCore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Hash.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\IExtraRenderingBuffers.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ImGuiModule.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ImageScaling.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\LinearAllocator.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Log.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Math\BoundingBox.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Math\BoundingPlane.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Math\BoundingSphere.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Math\Common.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Math\Frustum.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Math\Matrix3.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Math\Matrix4.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Math\Quaternion.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Math\Random.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Math\Scalar.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Math\Transform.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Math\Vector.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\MotionBlur.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ParticleEffect.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ParticleEffectManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ParticleEffectProperties.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ParticleShaderStructs.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\PipelineState.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\PixelBuffer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\PostEffects.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ReadbackBuffer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\RootSignature.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\SSAO.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\SamplerManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ShadowBuffer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\ShadowCamera.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\SystemTime.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\TemporalEffects.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\TextRenderer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Texture.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\TextureManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\UploadBuffer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Util\CommandLineArg.h">
+      <Filter>Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Util\stb_image_write.h">
+      <Filter>Core\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Utility.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\VRS.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\VRSScreenshot.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\VectorMath.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\d3dx12.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\dds.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\pch.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Animation.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\ConstantBuffers.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\IndexOptimizePostTransform.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\LightManager.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\MeshConvert.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Model.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\ModelH3D.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\ModelLoader.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\ParticleEffects.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Renderer.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\SponzaRenderer.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\TextureConvert.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\glTF.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\AoBlurAndUpsampleCS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\AoRenderCS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BicubicFilterFunctions.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BitonicSortCommon.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ColorSpaceUtility.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\CommonRS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFCommon.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFRS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAAPass1CS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAAPass2CS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAARootSignature.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\GenerateMipsCS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\LanczosFunctions.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\MotionBlurRS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleRS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleUpdateCommon.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleUtility.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\PerfGraphRS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\PixelPacking.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\PixelPacking_R11G11B10.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\PixelPacking_RGBE.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\PixelPacking_RGBM.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\PixelPacking_Velocity.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\PostEffectsRS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\PresentRS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\SSAORS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ShaderUtility.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\TextRS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ToneMappingUtility.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\VRSCommon.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\VRSContrastAdaptiveCS_optimized_slm.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\VRSScreenSpaceCS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\VRSScreenshot_CS.hlsli">
+      <Filter>Core\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\BRDF.hlsli">
+      <Filter>Model\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\Common.hlsli">
+      <Filter>Model\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\FillLightGridCS.hlsli">
+      <Filter>Model\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\LightGrid.hlsli">
+      <Filter>Model\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\Lighting.hlsli">
+      <Filter>Model\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\LightingPBR.hlsli">
+      <Filter>Model\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\imgui\imgui.h">
+      <Filter>Dependencies\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\imgui\imgui_internal.h">
+      <Filter>Dependencies\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\imgui\backends\imgui_impl_win32.h">
+      <Filter>Dependencies\imgui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\CMakeFiles\MiniEngine.dir\Debug\cmake_pch.hxx">
+      <Filter>Precompile Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\CMakeFiles\MiniEngine.dir\Release\cmake_pch.hxx">
+      <Filter>Precompile Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\CMakeFiles\MiniEngine.dir\MinSizeRel\cmake_pch.hxx">
+      <Filter>Precompile Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\CMakeFiles\MiniEngine.dir\RelWithDebInfo\cmake_pch.hxx">
+      <Filter>Precompile Header File</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ImGuiVS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleNoSortVS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleVS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\PerfGraphBackgroundVS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\PerfGraphVS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ScreenQuadCommonVS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ScreenQuadPresentVS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\TextVS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\CutoutDepthSkinVS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\CutoutDepthVS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DefaultNoTangentNoUV1SkinVS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DefaultNoTangentNoUV1VS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DefaultNoTangentSkinVS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DefaultNoTangentVS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DefaultNoUV1SkinVS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DefaultNoUV1VS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DefaultSkinVS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DefaultVS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DepthOnlySkinVS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DepthOnlyVS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DepthViewerVS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\ModelViewerVS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\SkyboxVS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BicubicHorizontalUpsamplePS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BicubicUpsampleGammaPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BicubicUpsamplePS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BicubicVerticalUpsamplePS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BilinearUpsamplePS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BlendUIHDRPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BufferCopyPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\CompositeHDRPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\CompositeSDRPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DownsampleDepthPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ImGuiPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\LanczosHorizontalPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\LanczosVerticalPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\MagnifyPixelsPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\MotionBlurFinalPassPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\MotionBlurFinalPassUnpackedVelocityPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleEnableMaskPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticlePS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\PerfGraphPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\PresentHDRPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\PresentSDRPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ScaleAndCompositeHDRPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ScaleAndCompositeSDRPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\SharpeningUpsampleGammaPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\SharpeningUpsamplePS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\TextAntialiasPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\TextShadowPS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\CutoutDepthPS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DefaultNoTangentNoUV1PS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DefaultNoTangentPS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DefaultNoUV1PS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DefaultPS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\DepthViewerPS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\ModelViewerPS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\SkyboxPS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\AdaptExposureCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\AoBlurUpsampleBlendOutCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\AoBlurUpsampleCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\AoBlurUpsamplePreMinBlendOutCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\AoBlurUpsamplePreMinCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\AoPrepareDepthBuffers1CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\AoPrepareDepthBuffers2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\AoRender1CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\AoRender2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ApplyBloom2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ApplyBloomCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\AverageLumaCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BicubicUpsampleCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BicubicUpsampleFast16CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BicubicUpsampleFast24CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BicubicUpsampleFast32CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\Bitonic32InnerSortCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\Bitonic32OuterSortCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\Bitonic32PreSortCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\Bitonic64InnerSortCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\Bitonic64OuterSortCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\Bitonic64PreSortCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BitonicIndirectArgsCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BloomExtractAndDownsampleHdrCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BloomExtractAndDownsampleLdrCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BlurCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\BoundNeighborhoodCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\CameraMotionBlurPrePassCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\CameraMotionBlurPrePassLinearZCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\CameraVelocityCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\CopyBackPostBufferCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DebugDrawHistogramCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DebugLuminanceHdr2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DebugLuminanceHdrCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DebugLuminanceLdr2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DebugLuminanceLdrCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DebugSSAOCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFCombine2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFCombineCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFCombineFast2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFCombineFastCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFDebugBlueCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFDebugGreenCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFDebugRedCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFMedianFilterCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFMedianFilterFixupCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFMedianFilterSepAlphaCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFPass1CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFPass2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFPass2DebugCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFPass2FastCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFPass2FixupCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFPreFilterCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFPreFilterFastCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFPreFilterFixupCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFTilePassCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFTilePassFixupCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFVRSFullRateCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFVRSHalfRateCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DoFVRSQuarterRateCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DownsampleBloomAllCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\DownsampleBloomCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ExtractLumaCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAAPass1_Luma2_CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAAPass1_Luma_CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAAPass1_RGB2_CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAAPass1_RGB_CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAAPass2H2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAAPass2HCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAAPass2HDebug2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAAPass2HDebugCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAAPass2V2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAAPass2VCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAAPass2VDebug2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAAPass2VDebugCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\FXAAResolveWorkQueueCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\GenerateHistogramCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\GenerateMipsGammaCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\GenerateMipsGammaOddCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\GenerateMipsGammaOddXCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\GenerateMipsGammaOddYCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\GenerateMipsLinearCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\GenerateMipsLinearOddCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\GenerateMipsLinearOddXCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\GenerateMipsLinearOddYCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\LanczosCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\LanczosFast16CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\LanczosFast24CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\LanczosFast32CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\LinearizeDepthCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\MotionBlurFinalPassCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\MotionBlurFinalPassUnpackedVelocityCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\MotionBlurPrePassCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\MotionBlurPrePassUnpackedVelocityCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleBinCullingCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleDepthBoundsCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleDispatchIndirectArgsCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleFinalDispatchIndirectArgsCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleLargeBinCullingCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticlePreSortCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleSortIndirectArgsCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleSpawnCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileCullingCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRender2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRender3CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderFast2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderFast3CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderFastCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderFastDynamic2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderFastDynamic3CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderFastDynamicCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderFastLowRes2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderFastLowRes3CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderFastLowResCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderSlowDynamic2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderSlowDynamic3CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderSlowDynamicCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderSlowLowRes2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderSlowLowRes3CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleTileRenderSlowLowResCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ParticleUpdateCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ResolveTAACS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\SharpenCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\SharpenTAACS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\TemporalBlendCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ToneMap2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ToneMapCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ToneMapHDR2CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\ToneMapHDRCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\UpsampleAndBlurCS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\VRSContrastAdaptive16x16_RGB2_CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\VRSContrastAdaptive16x16_RGB_CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\VRSContrastAdaptive8x8_RGB2_CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\VRSContrastAdaptive8x8_RGB_CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\VRSScreenSpace_RGB2_CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\VRSScreenSpace_RGB_CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\VRSScreenshot_RGB2_CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Core\Shaders\VRSScreenshot_RGB_CS.hlsl">
+      <Filter>Core\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\FillLightGrid16CS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\FillLightGrid24CS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\FillLightGrid32CS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+    <FXCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Model\Shaders\FillLightGrid8CS.hlsl">
+      <Filter>Model\Shaders</Filter>
+    </FXCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{FA76A284-AF79-325D-A1DC-212888EC86F2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Fonts">
+      <UniqueIdentifier>{CADCAD80-EE3D-372C-8A3B-6BC5F4AF62E4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Math">
+      <UniqueIdentifier>{EAF379D4-FD48-36BF-A0D8-EE7573E39F07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Shaders">
+      <UniqueIdentifier>{86023CAF-82A2-3091-A905-FBEBB1B9DCDA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Util">
+      <UniqueIdentifier>{02436964-9936-3A0A-AAF6-2F103D67DE6B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies">
+      <UniqueIdentifier>{32A47474-05E6-376F-905E-254F29DC63C7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\imgui">
+      <UniqueIdentifier>{56400AA7-B5C8-3F12-AD83-7AF7665B1F86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\imgui\backends">
+      <UniqueIdentifier>{D4092E87-7473-3B1F-B3BF-EE94A8E0FBB5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{4A9A8880-EC15-3B7D-A913-5E81BABD16DE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Shaders">
+      <UniqueIdentifier>{ECD32659-2508-38E4-BE32-AEA360189030}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Precompile Header File">
+      <UniqueIdentifier>{755A0D1F-3638-35DA-85FC-BF0BA04DBC1F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{53664C3A-B41A-384C-8C29-0FD0FC42916B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

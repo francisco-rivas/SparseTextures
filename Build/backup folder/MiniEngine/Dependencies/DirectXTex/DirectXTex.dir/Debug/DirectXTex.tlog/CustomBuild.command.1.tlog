@@ -1,0 +1,10 @@
+^D:\MAPPEDFOLDER\GITROOT\SPARSEVIRTUALTEXTURE\MINIENGINE\DEPENDENCIES\DIRECTXTEX\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/MappedFolder/GitRoot/SparseVirtualTexture -BD:/MappedFolder/GitRoot/SparseVirtualTexture/build --check-stamp-file D:/MappedFolder/GitRoot/SparseVirtualTexture/build/MiniEngine/Dependencies/DirectXTex/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -36,6 +36,10 @@
 #include "FrustumViewer.h"
 #include "DebugHelper.h"
 #include "WindowCapture.h"
+#include <wincodec.h>
+#include "ScreenGrab.h"
+//#include "GraphicsCore.h"
+//#include "DDSTextureLoader.h"
 
 #pragma comment(lib, "d3d12.lib")
 #pragma comment(lib, "d3dcompiler.lib")
@@ -99,6 +103,9 @@ void Scene::CreateDeviceWithName(std::wstring& out_adapterDescription)
 
         D3D12CreateDevice(adapter.Get(), D3D_FEATURE_LEVEL_12_0, IID_PPV_ARGS(&m_device));
 
+        // FR: Use this device for MiniEngine to get some helper functions.
+        //Graphics::g_Device = m_device.Get();
+
         // if we care about adapter architecture, check that UMA corresponds to integrated vs. discrete
         if (CommandLineArgs::PreferredArchitecture::NONE != preferredArchitecture)
         {
@@ -143,6 +150,9 @@ Scene::Scene(const CommandLineArgs& in_args, HWND in_hwnd) :
     , m_renderThreadTimes(in_args.m_statisticsNumFrames)
     , m_updateFeedbackTimes(in_args.m_statisticsNumFrames)
 {
+    // FR: By default start off using virtual textures.
+    m_bVirtualTexturePrevFrame = true;
+
     m_windowInfo.cbSize = sizeof(WINDOWINFO);
 
     UINT factoryFlags = 0;
@@ -503,7 +513,7 @@ void Scene::CreateDescriptorHeaps()
     rtvHeapDesc.NumDescriptors = m_swapBufferCount + 1;
     rtvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
     ThrowIfFailed(m_device->CreateDescriptorHeap(&rtvHeapDesc, IID_PPV_ARGS(&m_rtvHeap)));
-    m_srvHeap->SetName(L"m_rtvHeap");
+    m_rtvHeap->SetName(L"m_rtvHeap");
 
     // depth buffer view heap
     D3D12_DESCRIPTOR_HEAP_DESC dsvHeapDesc = {};
@@ -1082,6 +1092,546 @@ void Scene::SetSampler()
     m_device->CreateSampler(&samplerDesc, descHandle);
 }
 
+// FR: Functions for loading scene fully into memory.
+void Scene::LoadPipeline()
+{
+	// Create descriptor heaps.
+	{
+		// Describe and create a shader resource view (SRV) heap for the texture.
+		D3D12_DESCRIPTOR_HEAP_DESC srvHeapDesc = {};
+		srvHeapDesc.NumDescriptors = 1;
+		srvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+		srvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+		ThrowIfFailed(m_device->CreateDescriptorHeap(&srvHeapDesc, IID_PPV_ARGS(&m_srvHeapSimpleObject)));
+        m_srvHeapSimpleObject->SetName(L"m_srvHeapSimpleObject");
+
+		//m_rtvDescriptorSize = m_device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
+	}
+}
+
+void Scene::ReleasePipeline()
+{
+    SAFE_RELEASE(m_srvHeapSimpleObject);
+    //if (m_srvHeapSimpleObject != nullptr)
+    //{
+    //    m_srvHeapSimpleObject->Release();
+    //    m_srvHeapSimpleObject = nullptr;
+    //}
+}
+
+void Scene::LoadAssets()
+{
+	// Create the root signature.
+    if(m_rootSignatureSimpleObject == nullptr)
+	{
+		D3D12_FEATURE_DATA_ROOT_SIGNATURE featureData = {};
+
+		// This is the highest version the sample supports. If CheckFeatureSupport succeeds, the HighestVersion returned will not be greater than this.
+		featureData.HighestVersion = D3D_ROOT_SIGNATURE_VERSION_1_1;
+
+		if (FAILED(m_device->CheckFeatureSupport(D3D12_FEATURE_ROOT_SIGNATURE, &featureData, sizeof(featureData))))
+		{
+			featureData.HighestVersion = D3D_ROOT_SIGNATURE_VERSION_1_0;
+		}
+
+		CD3DX12_DESCRIPTOR_RANGE1 ranges[1];
+		ranges[0].Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0, 0, D3D12_DESCRIPTOR_RANGE_FLAG_DATA_STATIC);
+
+		CD3DX12_ROOT_PARAMETER1 rootParameters[1];
+		rootParameters[0].InitAsDescriptorTable(1, &ranges[0], D3D12_SHADER_VISIBILITY_PIXEL);
+
+		D3D12_STATIC_SAMPLER_DESC sampler = {};
+		sampler.Filter = D3D12_FILTER_MIN_MAG_MIP_POINT;
+		sampler.AddressU = D3D12_TEXTURE_ADDRESS_MODE_BORDER;
+		sampler.AddressV = D3D12_TEXTURE_ADDRESS_MODE_BORDER;
+		sampler.AddressW = D3D12_TEXTURE_ADDRESS_MODE_BORDER;
+		sampler.MipLODBias = 0;
+		sampler.MaxAnisotropy = 0;
+		sampler.ComparisonFunc = D3D12_COMPARISON_FUNC_NEVER;
+		sampler.BorderColor = D3D12_STATIC_BORDER_COLOR_TRANSPARENT_BLACK;
+		sampler.MinLOD = 0.0f;
+		sampler.MaxLOD = D3D12_FLOAT32_MAX;
+		sampler.ShaderRegister = 0;
+		sampler.RegisterSpace = 0;
+		sampler.ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
+
+		CD3DX12_VERSIONED_ROOT_SIGNATURE_DESC rootSignatureDesc;
+		rootSignatureDesc.Init_1_1(_countof(rootParameters), rootParameters, 1, &sampler, D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
+
+		ComPtr<ID3DBlob> signature;
+		ComPtr<ID3DBlob> error;
+		ThrowIfFailed(D3DX12SerializeVersionedRootSignature(&rootSignatureDesc, featureData.HighestVersion, &signature, &error));
+		ThrowIfFailed(m_device->CreateRootSignature(0, signature->GetBufferPointer(), signature->GetBufferSize(), IID_PPV_ARGS(&m_rootSignatureSimpleObject)));
+	}
+
+	// Create the pipeline state, which includes compiling and loading shaders.
+    if(m_pipelineStateSimpleObject == nullptr)
+	{
+		ComPtr<ID3DBlob> vertexShader;
+		ComPtr<ID3DBlob> pixelShader;
+
+    #if defined(_DEBUG)
+		// Enable better shader debugging with the graphics debugging tools.
+		UINT compileFlags = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
+    #else
+		UINT compileFlags = 0;
+    #endif
+
+        ID3DBlob* pErrorMsgs = 0;
+        HRESULT hr = 0;
+
+        hr = D3DCompileFromFile(L"shaders\\modelVS.hlsl", nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, "main", "vs_5_0", compileFlags, 0, &vertexShader, &pErrorMsgs);
+        if (FAILED(hr) && pErrorMsgs)
+        {
+			char* pMsgs = (char*)pErrorMsgs->GetBufferPointer();
+			MessageBoxA(0, pMsgs, "error", MB_OK);
+			pErrorMsgs->Release();
+        }
+		//ThrowIfFailed(D3DCompileFromFile(SceneObjects::BaseObject::GetAssetFullPath(L"modelVS.cso").c_str(), nullptr, nullptr, "main", "vs_5_0", compileFlags, 0, &vertexShader, nullptr));
+
+		hr = D3DCompileFromFile(L"shaders\\modelPS.hlsl", nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, "main", "ps_5_0", compileFlags, 0, &pixelShader, &pErrorMsgs);
+		if (FAILED(hr) && pErrorMsgs)
+		{
+			char* pMsgs = (char*)pErrorMsgs->GetBufferPointer();
+			MessageBoxA(0, pMsgs, "error", MB_OK);
+			pErrorMsgs->Release();
+		}
+		//ThrowIfFailed(D3DCompileFromFile(SceneObjects::BaseObject::GetAssetFullPath(L"modelPS.cso").c_str(), nullptr, nullptr, "main", "ps_5_0", compileFlags, 0, &pixelShader, nullptr));
+
+		// Define the vertex input layout.
+		D3D12_INPUT_ELEMENT_DESC inputElementDescs[] =
+		{
+			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+			{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
+		};
+
+		// Describe and create the graphics pipeline state object (PSO).
+		D3D12_GRAPHICS_PIPELINE_STATE_DESC psoDesc = {};
+		psoDesc.InputLayout = { inputElementDescs, _countof(inputElementDescs) };
+		psoDesc.pRootSignature = m_rootSignatureSimpleObject.Get();
+		psoDesc.VS = CD3DX12_SHADER_BYTECODE(vertexShader.Get());
+		psoDesc.PS = CD3DX12_SHADER_BYTECODE(pixelShader.Get());
+		psoDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
+		psoDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
+		psoDesc.DepthStencilState.DepthEnable = FALSE;
+		psoDesc.DepthStencilState.StencilEnable = FALSE;
+		//psoDesc.RasterizerState = in_rasterizerDesc;
+		//psoDesc.DepthStencilState = in_depthStencilDesc;
+		psoDesc.SampleMask = UINT_MAX;
+		psoDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
+		psoDesc.NumRenderTargets = 1;
+		//psoDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
+		//psoDesc.SampleDesc.Count = 1;
+		psoDesc.RTVFormats[0] = SharedConstants::SWAP_CHAIN_FORMAT;
+		psoDesc.DSVFormat = SharedConstants::DEPTH_FORMAT;
+        psoDesc.SampleDesc.Count = m_args.m_sampleCount;
+		ThrowIfFailed(m_device->CreateGraphicsPipelineState(&psoDesc, IID_PPV_ARGS(&m_pipelineStateSimpleObject)));
+	}
+
+    {
+        // FR: Not sure if I need this....
+        // Create the command list.
+        //ThrowIfFailed(m_device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, m_commandAllocator.Get(), m_pipelineState.Get(), IID_PPV_ARGS(&m_commandListSimpleObject)));
+
+        // prepare for new commands (need an open command list for LoadSpheres)
+        m_commandAllocators[m_frameIndex]->Reset();
+        m_commandList->Reset((ID3D12CommandAllocator*)m_commandAllocators[m_frameIndex].Get(), nullptr);
+    }
+
+	// Create the vertex buffer.
+	{
+		// Define the geometry for a triangle.
+		SimpleVertex triangleVertices[] =
+		{
+			{ { 0.0f, 0.25f * m_aspectRatio, 0.0f }, { 0.5f, 0.0f } },
+			{ { 0.25f, -0.25f * m_aspectRatio, 0.0f }, { 1.0f, 1.0f } },
+			{ { -0.25f, -0.25f * m_aspectRatio, 0.0f }, { 0.0f, 1.0f } }
+		};
+
+		const UINT vertexBufferSize = sizeof(triangleVertices);
+
+		// Note: using upload heaps to transfer static data like vert buffers is not 
+		// recommended. Every time the GPU needs it, the upload heap will be marshalled 
+		// over. Please read up on Default Heap usage. An upload heap is used here for 
+		// code simplicity and because there are very few verts to actually transfer.
+        CD3DX12_HEAP_PROPERTIES uploadHeap(D3D12_HEAP_TYPE_UPLOAD);
+        CD3DX12_RESOURCE_DESC vbSize = CD3DX12_RESOURCE_DESC::Buffer(vertexBufferSize);
+		ThrowIfFailed(m_device->CreateCommittedResource(
+			//&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
+            &uploadHeap,
+			D3D12_HEAP_FLAG_NONE,
+			//&CD3DX12_RESOURCE_DESC::Buffer(vertexBufferSize),
+            &vbSize,
+			D3D12_RESOURCE_STATE_GENERIC_READ,
+			nullptr,
+			IID_PPV_ARGS(&m_vertexBufferSimpleObject)));
+
+		// Copy the triangle data to the vertex buffer.
+		UINT8* pVertexDataBegin;
+		CD3DX12_RANGE readRange(0, 0);        // We do not intend to read from this resource on the CPU.
+		ThrowIfFailed(m_vertexBufferSimpleObject->Map(0, &readRange, reinterpret_cast<void**>(&pVertexDataBegin)));
+		memcpy(pVertexDataBegin, triangleVertices, sizeof(triangleVertices));
+		m_vertexBufferSimpleObject->Unmap(0, nullptr);
+
+		// Initialize the vertex buffer view.
+		m_vertexBufferViewSimpleObject.BufferLocation = m_vertexBufferSimpleObject->GetGPUVirtualAddress();
+		m_vertexBufferViewSimpleObject.StrideInBytes = sizeof(SimpleVertex);
+		m_vertexBufferViewSimpleObject.SizeInBytes = vertexBufferSize;
+	}
+
+	// Note: ComPtr's are CPU objects but this resource needs to stay in scope until
+	// the command list that references it has finished executing on the GPU.
+	// We will flush the GPU at the end of this method to ensure the resource is not
+	// prematurely destroyed.
+	ComPtr<ID3D12Resource> textureUploadHeap;
+
+    GenerateTexture(m_textureWidthSimpleObject, m_textureHeightSimpleObject, m_texturePixelSizeSimpleObject, m_device.Get(), m_commandList.Get(), textureUploadHeap.Get(), &m_textureSimpleObject, m_srvHeapSimpleObject->GetCPUDescriptorHandleForHeapStart());
+
+	//// Create the texture.
+	//{
+	//	// Describe and create a Texture2D.
+	//	D3D12_RESOURCE_DESC textureDesc = {};
+	//	textureDesc.MipLevels = 1;
+	//	textureDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	//	textureDesc.Width = m_textureWidthSimpleObject;
+	//	textureDesc.Height = m_textureHeightSimpleObject;
+	//	textureDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
+	//	textureDesc.DepthOrArraySize = 1;
+	//	textureDesc.SampleDesc.Count = 1;
+	//	textureDesc.SampleDesc.Quality = 0;
+	//	textureDesc.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D;
+
+ //       CD3DX12_HEAP_PROPERTIES defaultHeap(D3D12_HEAP_TYPE_DEFAULT);
+	//	ThrowIfFailed(m_device->CreateCommittedResource(
+	//		//&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT),
+ //           &defaultHeap,
+	//		D3D12_HEAP_FLAG_NONE,
+	//		&textureDesc,
+	//		D3D12_RESOURCE_STATE_COPY_DEST,
+	//		nullptr,
+	//		IID_PPV_ARGS(&m_textureSimpleObject)));
+
+	//	const UINT64 uploadBufferSize = GetRequiredIntermediateSize(m_textureSimpleObject.Get(), 0, 1);
+
+ //       CD3DX12_HEAP_PROPERTIES uploadHeap(D3D12_HEAP_TYPE_UPLOAD);
+ //       CD3DX12_RESOURCE_DESC texBufferSize = CD3DX12_RESOURCE_DESC::Buffer(uploadBufferSize);
+	//	// Create the GPU upload buffer.
+	//	ThrowIfFailed(m_device->CreateCommittedResource(
+	//		//&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
+ //           &uploadHeap,
+	//		D3D12_HEAP_FLAG_NONE,
+	//		//&CD3DX12_RESOURCE_DESC::Buffer(uploadBufferSize),
+ //           &texBufferSize,
+	//		D3D12_RESOURCE_STATE_GENERIC_READ,
+	//		nullptr,
+	//		IID_PPV_ARGS(&textureUploadHeap)));
+
+	//	// Copy data to the intermediate upload heap and then schedule a copy 
+	//	// from the upload heap to the Texture2D.
+	//	std::vector<UINT8> texture = GenerateTextureData();
+
+	//	D3D12_SUBRESOURCE_DATA textureData = {};
+	//	textureData.pData = &texture[0];
+	//	textureData.RowPitch = m_textureWidthSimpleObject * m_texturePixelSizeSimpleObject;
+	//	textureData.SlicePitch = textureData.RowPitch * m_textureHeightSimpleObject;
+
+	//	UpdateSubresources(m_commandList.Get(), m_textureSimpleObject.Get(), textureUploadHeap.Get(), 0, 0, 1, &textureData);
+ //       m_textureSimpleObject->SetName(L"Generated Checkerboard");
+
+ //       CD3DX12_RESOURCE_BARRIER barrierTransition = CD3DX12_RESOURCE_BARRIER::Transition(m_textureSimpleObject.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE);
+	//	m_commandList->ResourceBarrier(
+ //           1
+ //           //,&CD3DX12_RESOURCE_BARRIER::Transition(m_textureSimpleObject.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE)
+ //           , &barrierTransition
+ //       );
+
+ //       {
+ //           //barrierTransition = CD3DX12_RESOURCE_BARRIER::Transition(m_textureSimpleObject.Get(), D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE, D3D12_RESOURCE_STATE_COPY_SOURCE);
+ //           //m_commandList->ResourceBarrier(
+ //           //    1
+ //           //    //,&CD3DX12_RESOURCE_BARRIER::Transition(m_textureSimpleObject.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE)
+ //           //    , &barrierTransition
+ //           //);
+
+ //           //ThrowIfFailed(SaveWICTextureToFile(m_commandQueue.Get(), m_textureSimpleObject.Get(), GUID_ContainerFormatJpeg, L"D:\\MappedFolder\\GitRoot\\SamplerFeedbackStreaming\\TestAssets\\checkerboard.jpg",
+ //           //    D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE));
+
+	//		//barrierTransition = CD3DX12_RESOURCE_BARRIER::Transition(m_textureSimpleObject.Get(), D3D12_RESOURCE_STATE_COPY_SOURCE, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE);
+ //  //         m_commandList->ResourceBarrier(
+ //  //             1
+ //  //             //,&CD3DX12_RESOURCE_BARRIER::Transition(m_textureSimpleObject.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE)
+ //  //             , &barrierTransition
+ //  //         );
+ //       }
+
+	//	// Describe and create a SRV for the texture.
+	//	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
+	//	srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+	//	srvDesc.Format = textureDesc.Format;
+	//	srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+	//	srvDesc.Texture2D.MipLevels = 1;
+	//	m_device->CreateShaderResourceView(m_textureSimpleObject.Get(), &srvDesc, m_srvHeapSimpleObject->GetCPUDescriptorHandleForHeapStart());
+	//}
+
+    //// Test loading some textures from a file.
+    //{
+    //    D3D12_CPU_DESCRIPTOR_HANDLE deschandle = {};
+    //    CreateDDSTextureFromFile(m_device.Get(), nullptr, 0, false, nullptr, deschandle, nullptr);
+    //}
+
+	// Close the command list and execute it to begin the initial GPU setup.
+	ThrowIfFailed(m_commandList->Close());
+	ID3D12CommandList* ppCommandLists[] = { m_commandList.Get() };
+	m_commandQueue->ExecuteCommandLists(_countof(ppCommandLists), ppCommandLists);
+
+ //   // FR: TODO - Stuck on fences.  How do I wait for the texture to be uploaded to the GPU??????
+	//// Create synchronization objects and wait until assets have been uploaded to the GPU.
+	//{
+	//	ThrowIfFailed(m_device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&m_fence)));
+	//	m_fenceValue = 1;
+
+	//	// Create an event handle to use for frame synchronization.
+	//	m_fenceEvent = CreateEvent(nullptr, FALSE, FALSE, nullptr);
+	//	if (m_fenceEvent == nullptr)
+	//	{
+	//		ThrowIfFailed(HRESULT_FROM_WIN32(GetLastError()));
+	//	}
+
+	//	// Wait for the command list to execute; we are reusing the same command 
+	//	// list in our main loop but for now, we just want to wait for setup to 
+	//	// complete before continuing.
+	//	WaitForPreviousFrame();
+	//}
+    // 
+    // FR: I think I can use this to wait for stuff to load.  Don't think I need WaitForAssetLoad() because that's tied to streaming...
+    WaitForGpu();
+    //WaitForAssetLoad();
+}
+
+void GenerateTexture(UINT width, UINT height, UINT pixelSize, ID3D12Device* pDevice, ID3D12GraphicsCommandList1* cmdList,
+    ID3D12Resource* textureUploadHeap, ID3D12Resource** out_destinationTexture, D3D12_CPU_DESCRIPTOR_HANDLE srvDescriptorHandle)
+//void Scene::GenerateTexture(ID3D12Resource* textureUploadHeap, ID3D12Resource** out_destinationTexture)
+{
+	// Create the texture.
+	{
+		// Describe and create a Texture2D.
+		D3D12_RESOURCE_DESC textureDesc = {};
+		textureDesc.MipLevels = 1;
+		textureDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+		textureDesc.Width = width;
+		textureDesc.Height = height;
+		textureDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
+		textureDesc.DepthOrArraySize = 1;
+		textureDesc.SampleDesc.Count = 1;
+		textureDesc.SampleDesc.Quality = 0;
+		textureDesc.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D;
+
+		CD3DX12_HEAP_PROPERTIES defaultHeap(D3D12_HEAP_TYPE_DEFAULT);
+		ThrowIfFailed(pDevice->CreateCommittedResource(
+			//&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT),
+			&defaultHeap,
+			D3D12_HEAP_FLAG_NONE,
+			&textureDesc,
+			D3D12_RESOURCE_STATE_COPY_DEST,
+			nullptr,
+			IID_PPV_ARGS(out_destinationTexture)));
+
+		//const UINT64 uploadBufferSize = GetRequiredIntermediateSize(m_textureSimpleObject.Get(), 0, 1);
+        const UINT64 uploadBufferSize = GetRequiredIntermediateSize(*out_destinationTexture, 0, 1);
+
+		CD3DX12_HEAP_PROPERTIES uploadHeap(D3D12_HEAP_TYPE_UPLOAD);
+		CD3DX12_RESOURCE_DESC texBufferSize = CD3DX12_RESOURCE_DESC::Buffer(uploadBufferSize);
+		// Create the GPU upload buffer.
+		ThrowIfFailed(pDevice->CreateCommittedResource(
+			//&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
+			&uploadHeap,
+			D3D12_HEAP_FLAG_NONE,
+			//&CD3DX12_RESOURCE_DESC::Buffer(uploadBufferSize),
+			&texBufferSize,
+			D3D12_RESOURCE_STATE_GENERIC_READ,
+			nullptr,
+			IID_PPV_ARGS(&textureUploadHeap)));
+
+		// Copy data to the intermediate upload heap and then schedule a copy 
+		// from the upload heap to the Texture2D.
+		std::vector<UINT8> texture = GenerateTextureData(width, height, pixelSize);
+
+		D3D12_SUBRESOURCE_DATA textureData = {};
+		textureData.pData = &texture[0];
+		textureData.RowPitch = width * pixelSize;
+		textureData.SlicePitch = textureData.RowPitch * height;
+
+		//UpdateSubresources(m_commandList.Get(), m_textureSimpleObject.Get(), textureUploadHeap, 0, 0, 1, &textureData);
+		//m_textureSimpleObject->SetName(L"Generated Checkerboard");
+		UpdateSubresources(cmdList, *out_destinationTexture, textureUploadHeap, 0, 0, 1, &textureData);
+		(*out_destinationTexture)->SetName(L"Generated Checkerboard");
+
+		//CD3DX12_RESOURCE_BARRIER barrierTransition = CD3DX12_RESOURCE_BARRIER::Transition(m_textureSimpleObject.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE);
+        CD3DX12_RESOURCE_BARRIER barrierTransition = CD3DX12_RESOURCE_BARRIER::Transition(*out_destinationTexture, D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE);
+        cmdList->ResourceBarrier(
+			1
+			//,&CD3DX12_RESOURCE_BARRIER::Transition(m_textureSimpleObject.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE)
+			, &barrierTransition
+		);
+
+		{
+			//barrierTransition = CD3DX12_RESOURCE_BARRIER::Transition(m_textureSimpleObject.Get(), D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE, D3D12_RESOURCE_STATE_COPY_SOURCE);
+			//m_commandList->ResourceBarrier(
+			//    1
+			//    //,&CD3DX12_RESOURCE_BARRIER::Transition(m_textureSimpleObject.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE)
+			//    , &barrierTransition
+			//);
+
+			//ThrowIfFailed(SaveWICTextureToFile(m_commandQueue.Get(), m_textureSimpleObject.Get(), GUID_ContainerFormatJpeg, L"D:\\MappedFolder\\GitRoot\\SamplerFeedbackStreaming\\TestAssets\\checkerboard.jpg",
+			//    D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE));
+
+			//barrierTransition = CD3DX12_RESOURCE_BARRIER::Transition(m_textureSimpleObject.Get(), D3D12_RESOURCE_STATE_COPY_SOURCE, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE);
+   //         m_commandList->ResourceBarrier(
+   //             1
+   //             //,&CD3DX12_RESOURCE_BARRIER::Transition(m_textureSimpleObject.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE)
+   //             , &barrierTransition
+   //         );
+		}
+
+		// Describe and create a SRV for the texture.
+		D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
+		srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+		srvDesc.Format = textureDesc.Format;
+		srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+		srvDesc.Texture2D.MipLevels = 1;
+		//m_device->CreateShaderResourceView(m_textureSimpleObject.Get(), &srvDesc, m_srvHeapSimpleObject->GetCPUDescriptorHandleForHeapStart());
+        pDevice->CreateShaderResourceView(*out_destinationTexture, &srvDesc, srvDescriptorHandle);
+	}
+}
+
+void Scene::ReleaseAssets()
+{
+    SAFE_RELEASE(m_textureSimpleObject);
+    SAFE_RELEASE(m_vertexBufferSimpleObject);
+    SAFE_RELEASE(m_pipelineStateSimpleObject);
+    SAFE_RELEASE(m_rootSignatureSimpleObject);
+
+    //if (m_textureSimpleObject)
+    //{
+    //    m_textureSimpleObject->Release();
+    //    m_textureSimpleObject = nullptr;
+    //}
+
+    //if (m_vertexBufferSimpleObject)
+    //{
+    //    m_vertexBufferSimpleObject->Release();
+    //    m_vertexBufferSimpleObject = nullptr;
+    //}
+
+	//if (m_pipelineStateSimpleObject)
+	//{
+	//	m_pipelineStateSimpleObject->Release();
+	//	m_pipelineStateSimpleObject = nullptr;
+	//}
+
+	//if (m_rootSignatureSimpleObject)
+	//{
+	//	m_rootSignatureSimpleObject->Release();
+	//	m_rootSignatureSimpleObject = nullptr;
+	//}
+}
+
+// Generate a simple black and white checkerboard texture.
+//std::vector<UINT8> Scene::GenerateTextureData(UINT width, UINT hight, UINT pixelSize)
+std::vector<UINT8> GenerateTextureData(UINT width, UINT height, UINT pixelSize)
+{
+	const UINT rowPitch = width * pixelSize;
+	const UINT cellPitch = rowPitch >> 3;        // The width of a cell in the checkboard texture.
+	const UINT cellHeight = width >> 3;    // The height of a cell in the checkerboard texture.
+	const UINT textureSize = rowPitch * height;
+
+    // random color
+    UINT8 red = rand() % 256;
+    UINT8 green = rand() % 256;
+    UINT8 blue = rand() % 256;
+
+	std::vector<UINT8> data(textureSize);
+	UINT8* pData = &data[0];
+
+	for (UINT n = 0; n < textureSize; n += pixelSize)
+	{
+		UINT x = n % rowPitch;
+		UINT y = n / rowPitch;
+		UINT i = x / cellPitch;
+		UINT j = y / cellHeight;
+
+		if (i % 2 == j % 2)
+		{
+			pData[n] = 0x00;        // R
+			pData[n + 1] = 0x00;    // G
+			pData[n + 2] = 0x00;    // B
+			pData[n + 3] = 0xff;    // A
+		}
+		else
+		{
+			//pData[n] = 0xff;        // R
+			//pData[n + 1] = 0xff;    // G
+			//pData[n + 2] = 0xff;    // B
+			//pData[n + 3] = 0xff;    // A
+
+			pData[n] = red;        // R
+			pData[n + 1] = green;    // G
+			pData[n + 2] = blue;    // B
+			pData[n + 3] = 0xff;    // A
+		}
+	}
+
+	return data;
+}
+
+void Scene::PopulateCommandList()
+{
+	// Command list allocators can only be reset when the associated 
+	// command lists have finished execution on the GPU; apps should use 
+	// fences to determine GPU execution progress.
+    // FR: Already done in main render loop
+	//ThrowIfFailed(m_commandAllocator->Reset());
+
+	// However, when ExecuteCommandList() is called on a particular command 
+	// list, that command list can then be reset at any time and must be before 
+	// re-recording.
+    // FR: Already done in main render loop
+	//ThrowIfFailed(m_commandList->Reset(m_commandAllocator.Get(), m_pipelineState.Get()));
+
+	// Set necessary state.
+	m_commandList->SetGraphicsRootSignature(m_rootSignatureSimpleObject.Get());
+
+	ID3D12DescriptorHeap* ppHeaps[] = { m_srvHeapSimpleObject.Get() };
+	m_commandList->SetDescriptorHeaps(_countof(ppHeaps), ppHeaps);
+
+	m_commandList->SetGraphicsRootDescriptorTable(0, m_srvHeapSimpleObject->GetGPUDescriptorHandleForHeapStart());
+	//m_commandList->RSSetViewports(1, &m_viewport);
+	//m_commandList->RSSetScissorRects(1, &m_scissorRect);
+
+	//// Indicate that the back buffer will be used as a render target.
+	//m_commandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(m_renderTargets[m_frameIndex].Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET));
+
+	//CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(m_rtvHeap->GetCPUDescriptorHandleForHeapStart(), m_frameIndex, m_rtvDescriptorSize);
+	//m_commandList->OMSetRenderTargets(1, &rtvHandle, FALSE, nullptr);
+
+	//// Record commands.
+	//const float clearColor[] = { 0.0f, 0.2f, 0.4f, 1.0f };
+	//m_commandList->ClearRenderTargetView(rtvHandle, clearColor, 0, nullptr);
+
+    // FR: Adding root signature and PSO
+    //m_commandList->SetGraphicsRootSignature(m_rootSignatureSimpleObject);
+    m_commandList->SetPipelineState(m_pipelineStateSimpleObject.Get());
+
+	m_commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	m_commandList->IASetVertexBuffers(0, 1, &m_vertexBufferViewSimpleObject);
+	m_commandList->DrawInstanced(3, 1, 0, 0);
+
+	//// Indicate that the back buffer will now be used to present.
+	//m_commandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(m_renderTargets[m_frameIndex].Get(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT));
+
+	//ThrowIfFailed(m_commandList->Close());
+}
+
 //----------------------------------------------------------
 // time-limit the number of feedback resolves on the GPU
 // by keeping a running average of the time to resolve feedback
@@ -1234,6 +1784,7 @@ void Scene::DrawObjects()
 
             // always tell the scene object whether or not to use feedback
             o->SetFeedbackEnabled(queueFeedback);
+            o->SetVirtualTexturesEnabled(m_args.m_useVirtualTexturing);
         }
 
         // next time, start feedback where we left off this time.
@@ -1540,51 +2091,54 @@ void Scene::StartScene()
 //-------------------------------------------------------------------------
 void Scene::DrawUI()
 {
-    //-------------------------------------------
-    // Display various textures
-    //-------------------------------------------
-    if (m_args.m_showFeedbackMaps && (nullptr != m_pTerrainSceneObject))
+    if (m_bVirtualTexturePrevFrame)
     {
-        CreateTerrainViewers();
-
-        const float minDim = std::min(m_viewport.Height, m_viewport.Width) / 5;
-        const DirectX::XMFLOAT2 windowSize = DirectX::XMFLOAT2(minDim, minDim);
-
-        // terrain object's texture
-        if (m_args.m_showFeedbackMapVertical)
+        //-------------------------------------------
+        // Display various textures
+        //-------------------------------------------
+        if (m_args.m_showFeedbackMaps && (nullptr != m_pTerrainSceneObject))
         {
-            UINT areaHeight = UINT(m_viewport.Height - minDim);
+            CreateTerrainViewers();
+
+            const float minDim = std::min(m_viewport.Height, m_viewport.Width) / 5;
+            const DirectX::XMFLOAT2 windowSize = DirectX::XMFLOAT2(minDim, minDim);
+
+            // terrain object's texture
+            if (m_args.m_showFeedbackMapVertical)
+            {
+                UINT areaHeight = UINT(m_viewport.Height - minDim);
                 UINT numMips = areaHeight / (UINT)minDim;
                 if (numMips > 1)
                 {
                     DirectX::XMFLOAT2 windowPos = DirectX::XMFLOAT2(m_viewport.Width - minDim, 0);
-                        m_pTextureViewer->Draw(m_commandList.Get(), windowPos, windowSize,
-                            m_viewport,
-                            m_args.m_visualizationBaseMip, numMips - 1,
-                            m_args.m_showFeedbackMapVertical);
+                    m_pTextureViewer->Draw(m_commandList.Get(), windowPos, windowSize,
+                        m_viewport,
+                        m_args.m_visualizationBaseMip, numMips - 1,
+                        m_args.m_showFeedbackMapVertical);
                 }
-        }
-        else
-        {
-            UINT numMips = UINT(m_viewport.Width) / (UINT)minDim;
-            DirectX::XMFLOAT2 windowPos = DirectX::XMFLOAT2(0, 0);
-            m_pTextureViewer->Draw(m_commandList.Get(), windowPos, windowSize,
-                m_viewport,
-                m_args.m_visualizationBaseMip, numMips,
-                m_args.m_showFeedbackMapVertical);
-        }
+            }
+            else
+            {
+                UINT numMips = UINT(m_viewport.Width) / (UINT)minDim;
+                DirectX::XMFLOAT2 windowPos = DirectX::XMFLOAT2(0, 0);
+                m_pTextureViewer->Draw(m_commandList.Get(), windowPos, windowSize,
+                    m_viewport,
+                    m_args.m_visualizationBaseMip, numMips,
+                    m_args.m_showFeedbackMapVertical);
+            }
 
-        // terrain object's residency map
-        DirectX::XMFLOAT2 windowPos = DirectX::XMFLOAT2(m_viewport.Width - minDim, m_viewport.Height);
-        if (m_args.m_showFeedbackViewer)
-        {
-            m_pMinMipMapViewer->Draw(m_commandList.Get(), windowPos, windowSize, m_viewport);
+            // terrain object's residency map
+            DirectX::XMFLOAT2 windowPos = DirectX::XMFLOAT2(m_viewport.Width - minDim, m_viewport.Height);
+            if (m_args.m_showFeedbackViewer)
+            {
+                m_pMinMipMapViewer->Draw(m_commandList.Get(), windowPos, windowSize, m_viewport);
 
-            // min mip feedback
+                // min mip feedback
 #if RESOLVE_TO_TEXTURE
-            windowPos.x -= (5 + windowSize.x);
-            m_pFeedbackViewer->Draw(m_commandList.Get(), windowPos, windowSize, m_viewport);
+                windowPos.x -= (5 + windowSize.x);
+                m_pFeedbackViewer->Draw(m_commandList.Get(), windowPos, windowSize, m_viewport);
 #endif
+            }
         }
     }
 
@@ -1763,6 +2317,9 @@ bool Scene::Draw()
         return false;
     }
 
+    SceneObjects::BaseObject::SetCommandList(m_commandList);
+    SceneObjects::BaseObject::SetCommandQueue(m_commandQueue);
+
     HandleUIchanges(); // handle UI changes (outside of begin/end frame)
 
     // handle any changes to window dimensions or enter/exit full screen
@@ -1776,6 +2333,29 @@ bool Scene::Draw()
     if (m_args.m_waitForAssetLoad && WaitForAssetLoad())
     {
         return true;
+    }
+
+    // FR: Load or remove a scene from memory when Virtual Texturing is disabled or enabled.
+    {
+        if (m_bVirtualTexturePrevFrame && !m_args.m_useVirtualTexturing)
+        {
+            // Virtual Texturing newly disabled.
+
+            // load standard scene
+            LoadPipeline();
+            LoadAssets();
+        }
+        else if (!m_bVirtualTexturePrevFrame && m_args.m_useVirtualTexturing)
+        {
+            // Virtual Texturing newly enabled.
+            // 
+            // Delete standard scene assets.
+			WaitForGpu();
+            ReleaseAssets();
+            ReleasePipeline();
+        }
+
+        m_bVirtualTexturePrevFrame = m_args.m_useVirtualTexturing;
     }
 
     // prepare for new commands (need an open command list for LoadSpheres)
@@ -1802,11 +2382,20 @@ bool Scene::Draw()
     {
         GpuScopeTimer gpuScopeTimer(m_pGpuTimer, m_commandList.Get(), "GPU Frame Time");
 
-        // set RTV, DSV, descriptor heap, etc.
-        StartScene();
+		// set RTV, DSV, descriptor heap, etc.
+		StartScene();
 
-        // draw all geometry
-        DrawObjects();
+        //if (m_args.m_useVirtualTexturing)
+        {
+
+            // draw all geometry
+            DrawObjects();
+        }
+		//else
+		//{
+		//	// Record all the commands we need to render the scene into the command list.
+		//	PopulateCommandList();
+		//}
 
         if (m_args.m_visualizeFrustum)
         {
@@ -1826,6 +2415,7 @@ bool Scene::Draw()
             D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
         m_commandList->ResourceBarrier(1, &barrier);
     }
+
     m_pGpuTimer->ResolveAllTimers(m_commandList.Get());
     m_commandList->Close();
 

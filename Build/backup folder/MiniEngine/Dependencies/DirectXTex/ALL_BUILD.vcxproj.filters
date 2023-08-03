@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXTex\CMakeLists.txt">
+      <Filter>DirectXTex</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="DirectXTex">
+      <UniqueIdentifier>{2212D169-2B56-3056-A153-14F3B328EF14}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

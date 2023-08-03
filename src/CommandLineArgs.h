@@ -42,6 +42,7 @@ struct CommandLineArgs
     PreferredArchitecture m_preferredArchitecture{ PreferredArchitecture::NONE };
     std::wstring m_adapterDescription;  // e.g. "intel", will pick the GPU with this substring in the adapter description (not case sensitive)
 
+    bool m_useVirtualTexturing{ true };
     bool m_useDirectStorage{ true };
     UINT m_stagingSizeMB{ 128 };         // size of the staging buffer for DirectStorage or reference streaming code
 

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\DirectXMesh\CMakeFiles\DirectXMesh.dir\cmake_pch.cxx">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshAdjacency.cpp">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshClean.cpp">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshGSAdjacency.cpp">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshletGenerator.cpp">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshNormals.cpp">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshOptimize.cpp">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshOptimizeLRU.cpp">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshOptimizeTVC.cpp">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshRemap.cpp">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshTangentFrame.cpp">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshUtil.cpp">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshValidate.cpp">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshVBReader.cpp">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshVBWriter.cpp">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshWeldVertices.cpp">
+      <Filter>DirectXMesh</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMeshP.h">
+      <Filter>DirectXMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\scoped.h">
+      <Filter>DirectXMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMesh.h">
+      <Filter>DirectXMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\DirectXMesh\DirectXMesh.inl">
+      <Filter>DirectXMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\DirectXMesh\CMakeFiles\DirectXMesh.dir\Debug\cmake_pch.hxx">
+      <Filter>DirectXMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\DirectXMesh\CMakeFiles\DirectXMesh.dir\Release\cmake_pch.hxx">
+      <Filter>DirectXMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\DirectXMesh\CMakeFiles\DirectXMesh.dir\MinSizeRel\cmake_pch.hxx">
+      <Filter>DirectXMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\DirectXMesh\CMakeFiles\DirectXMesh.dir\RelWithDebInfo\cmake_pch.hxx">
+      <Filter>DirectXMesh</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\MappedFolder\GitRoot\SparseVirtualTexture\MiniEngine\Dependencies\DirectXMesh\CMakeLists.txt">
+      <Filter>DirectXMesh</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="DirectXMesh">
+      <UniqueIdentifier>{558C470C-329B-3144-AC5D-6C50D202D88A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,22 @@
+﻿  Building Custom Rule D:/MappedFolder/GitRoot/SparseVirtualTexture/MiniEngine/Dependencies/DirectXTex/CMakeLists.txt
+  cmake_pch.cxx
+  BC.cpp
+  BC4BC5.cpp
+  BC6HBC7.cpp
+  DirectXTexCompress.cpp
+  DirectXTexConvert.cpp
+  DirectXTexDDS.cpp
+  DirectXTexHDR.cpp
+  DirectXTexImage.cpp
+  DirectXTexMipmaps.cpp
+  DirectXTexMisc.cpp
+  DirectXTexNormalMaps.cpp
+  DirectXTexPMAlpha.cpp
+  DirectXTexResize.cpp
+  DirectXTexTGA.cpp
+  DirectXTexUtil.cpp
+  DirectXTexFlipRotate.cpp
+  DirectXTexWIC.cpp
+  DirectXTexD3D12.cpp
+  Generating Code...
+  DirectXTex.vcxproj -> D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\DirectXTex\Debug\DirectXTex.lib

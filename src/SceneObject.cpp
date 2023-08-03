@@ -31,7 +31,13 @@
 #include <filesystem>
 #include <DirectXMath.h>
 #include <wrl.h>
+#include <wincodec.h>
 #include <string>
+
+//#include "DDSTextureLoader.h"
+#include "WICTextureLoader.h"
+#include "ScreenGrab.h"
+#include "BasicTexture.h"
 
 #include <shlwapi.h> // for PathFindExtension
 #pragma comment(lib, "Shlwapi.lib")
@@ -41,6 +47,9 @@
 #include "Scene.h"
 #include "TerrainGenerator.h"
 #include "AssetUploader.h"
+
+ComPtr<ID3D12GraphicsCommandList1> SceneObjects::BaseObject::s_commandList = nullptr;
+ComPtr< ID3D12CommandQueue> SceneObjects::BaseObject::s_commandQueue = nullptr;
 
 //-------------------------------------------------------------------------
 // constructor
@@ -62,6 +71,10 @@ SceneObjects::BaseObject::BaseObject(
         m_rootSignatureFB = in_pSharedObject->m_rootSignatureFB;
         m_pipelineState = in_pSharedObject->m_pipelineState;
         m_pipelineStateFB = in_pSharedObject->m_pipelineStateFB;
+
+        // FR: When in Rome... don't know why I should do this, but trying it out...
+        m_rootSignatureNoStreaming = in_pSharedObject->m_rootSignatureNoStreaming;
+        m_pipelineStateNoStreaming = in_pSharedObject->m_pipelineStateNoStreaming;
     }
     else
     {
@@ -149,6 +162,29 @@ SceneObjects::BaseObject::BaseObject(
             ThrowIfFailed(D3D12SerializeVersionedRootSignature(&rootSignatureDesc, &signature, &error));
             ThrowIfFailed(in_pDevice->CreateRootSignature(0, signature->GetBufferPointer(), signature->GetBufferSize(), IID_PPV_ARGS(&m_rootSignatureFB)));
         }
+
+        // FR: root sig with texture loaded immediately from disk bound
+        {
+            std::vector<CD3DX12_DESCRIPTOR_RANGE1> rangesNoStreaming;
+            rangesNoStreaming.push_back(CD3DX12_DESCRIPTOR_RANGE1(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0, 0, D3D12_DESCRIPTOR_RANGE_FLAG_DATA_VOLATILE, (UINT)Descriptors::HeapOffsetNonStreamedTexture));
+            //rangesNoStreaming.push_back(CD3DX12_DESCRIPTOR_RANGE1(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0, 0, D3D12_DESCRIPTOR_RANGE_FLAG_DATA_VOLATILE, 0));
+            // add srv range to previous root param
+            rootParam.InitAsDescriptorTable((UINT)rangesNoStreaming.size(), rangesNoStreaming.data(), D3D12_SHADER_VISIBILITY_PIXEL);
+
+            //ranges.push_back(CD3DX12_DESCRIPTOR_RANGE1(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0, 0, D3D12_DESCRIPTOR_RANGE_FLAG_DATA_VOLATILE, (UINT)Descriptors::HeapOffsetNonStreamedTexture));
+            //rootParam.InitAsDescriptorTable((UINT)ranges.size(), ranges.data(), D3D12_SHADER_VISIBILITY_PIXEL);
+			
+            rootParameters[(UINT)RootSigParams::ParamObjectTextures] = rootParam;
+
+			// re-serialize
+			CD3DX12_VERSIONED_ROOT_SIGNATURE_DESC rootSignatureDesc;
+			rootSignatureDesc.Init_1_1((UINT)rootParameters.size(), rootParameters.data(), 0, nullptr, D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
+
+			ComPtr<ID3DBlob> signature;
+			ComPtr<ID3DBlob> error;
+			ThrowIfFailed(D3D12SerializeVersionedRootSignature(&rootSignatureDesc, &signature, &error));
+			ThrowIfFailed(in_pDevice->CreateRootSignature(0, signature->GetBufferPointer(), signature->GetBufferSize(), IID_PPV_ARGS(&m_rootSignatureNoStreaming)));
+        }
     }
 
     //---------------------------------------
@@ -169,12 +205,73 @@ SceneObjects::BaseObject::BaseObject(
         CD3DX12_CPU_DESCRIPTOR_HANDLE textureHandle(in_srvBaseCPU, (UINT)Descriptors::HeapOffsetTexture, m_srvUavCbvDescriptorSize);
         m_pStreamingResource->CreateStreamingView(in_pDevice, textureHandle);
     }
+
+    // FR: Create non-streaming textures from disk
+
+    if( m_pNonStreamedTexture == nullptr )
+	{
+        //ComPtr<ID3D12Resource> textureUploadHeap;
+        //CD3DX12_CPU_DESCRIPTOR_HANDLE nonStreamedTextureHandle(in_srvBaseCPU, (UINT)Descriptors::HeapOffsetNonStreamedTexture, m_srvUavCbvDescriptorSize);
+        //CD3DX12_CPU_DESCRIPTOR_HANDLE nonStreamedTextureHandle(in_srvBaseCPU, 0, m_srvUavCbvDescriptorSize);
+		//GenerateTexture(256, 256, 4, in_pDevice, s_commandList.Get(), textureUploadHeap.Get(), &m_pNonStreamedTexture, nonStreamedTextureHandle);
+
+        //CD3DX12_CPU_DESCRIPTOR_HANDLE m_nonStreamedTextureHandle(in_srvBaseCPU, (UINT)Descriptors::HeapOffsetNonStreamedTexture, m_srvUavCbvDescriptorSize);
+        m_nonStreamedTextureHandle.InitOffsetted(in_srvBaseCPU, (UINT)Descriptors::HeapOffsetNonStreamedTexture, m_srvUavCbvDescriptorSize);
+        //GenerateTexture(256, 256, 4, in_pDevice, s_commandList.Get(), textureUploadHeap.Get(), &m_pNonStreamedTexture, m_nonStreamedTextureHandle);
+	}
+
+#if 0
+    {
+        m_srvUavCbvDescriptorSize = in_pDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+
+        CD3DX12_CPU_DESCRIPTOR_HANDLE nonStreamedTextureHandle(in_srvBaseCPU, (UINT)Descriptors::HeapOffsetNonStreamedTexture, m_srvUavCbvDescriptorSize);
+
+        // DirectXTK12 texture uploader
+        {
+            std::unique_ptr<uint8_t[]> decodedData = nullptr;
+            D3D12_SUBRESOURCE_DATA subresourceData;
+            ThrowIfFailed(DirectX::LoadWICTextureFromFile(in_pDevice, L"D:\\MappedFolder\\GitRoot\\SamplerFeedbackStreaming\\TestAssets\\1_earth_4k.jpg", m_pNonStreamedTexture.ReleaseAndGetAddressOf(),
+                decodedData, subresourceData));
+
+
+            // FR: TODO - Can't do a resource state transition on a closed command list..  Figure out how to open that.  Look in Scene.cpp - Line#1236
+			//CD3DX12_RESOURCE_BARRIER barrierTransition = CD3DX12_RESOURCE_BARRIER::Transition(m_pNonStreamedTexture.Get(), D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE, D3D12_RESOURCE_STATE_COPY_SOURCE);
+   //         s_commandList->ResourceBarrier(
+			//	1
+			//	//,&CD3DX12_RESOURCE_BARRIER::Transition(m_pNonStreamedTexture.Get(), D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE, D3D12_RESOURCE_STATE_COPY_SOURCE)
+			//	, &barrierTransition
+			//);
+
+   //         ThrowIfFailed(SaveWICTextureToFile(s_commandQueue.Get(), m_pNonStreamedTexture.Get(), GUID_ContainerFormatJpeg, L"D:\\MappedFolder\\GitRoot\\SamplerFeedbackStreaming\\TestAssets\\saved_earth_4k.jpg",
+   //             D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE));
+        }
+
+        D3D12_RESOURCE_DESC texDesc = m_pNonStreamedTexture->GetDesc();
+        // Create the srv for the texture
+		D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
+		srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+		srvDesc.Format = texDesc.Format;
+		srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+        srvDesc.Texture2D.MipLevels = texDesc.MipLevels;
+        in_pDevice->CreateShaderResourceView(m_pNonStreamedTexture.Get(), &srvDesc, nonStreamedTextureHandle);
+
+		//// Marissa's texture uploader
+		//{
+  //          CD3DX12_CPU_DESCRIPTOR_HANDLE textureHandle(in_srvBaseCPU, (UINT)Descriptors::HeapOffsetTexture, m_srvUavCbvDescriptorSize);
+  //          char filename[] = "D:/MappedFolder/GitRoot/SamplerFeedbackStreaming/TestAssets/1_earth_4k.jpg";
+  //          Texture temp(filename, in_pDevice, s_commandList, textureHandle);
+  //          m_nonStreamedTexture = temp;
+		//}
+    }
+#endif
 }
 
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 void SceneObjects::BaseObject::CreatePipelineState(
-    const wchar_t* in_ps, const wchar_t* in_psFB, const wchar_t* in_vs,
+    const wchar_t* in_ps, const wchar_t* in_psFB, 
+    const wchar_t* in_psNoStreaming,
+    const wchar_t* in_vs,
     ID3D12Device* in_pDevice, UINT in_sampleCount,
     const D3D12_RASTERIZER_DESC& in_rasterizerDesc,
     const D3D12_DEPTH_STENCIL_DESC& in_depthStencilDesc)
@@ -226,6 +323,21 @@ void SceneObjects::BaseObject::CreatePipelineState(
         psoDesc.PS.pShaderBytecode = psFeedbackBytes.data();
 
         ThrowIfFailed(in_pDevice->CreateGraphicsPipelineState(&psoDesc, IID_PPV_ARGS(&m_pipelineStateFB)));
+    }
+
+    // FR: create a third PSO that just fetches from a single texture loaded immediately from disk.
+    //if(in_psNoStreaming)
+    {
+        psoDesc.pRootSignature = m_rootSignatureNoStreaming.Get();
+
+        firstPassPsPath = GetAssetFullPath(in_psNoStreaming);
+		std::ifstream psNoStreaming(firstPassPsPath, std::fstream::binary);
+		std::vector<char> psNoStreamingBytes = std::vector<char>((std::istreambuf_iterator<char>(psNoStreaming)), std::istreambuf_iterator<char>());
+
+		psoDesc.PS.BytecodeLength = psNoStreamingBytes.size();
+		psoDesc.PS.pShaderBytecode = psNoStreamingBytes.data();
+
+        ThrowIfFailed(in_pDevice->CreateGraphicsPipelineState(&psoDesc, IID_PPV_ARGS(&m_pipelineStateNoStreaming)));
     }
 }
 
@@ -294,16 +406,23 @@ void SceneObjects::BaseObject::SetGeometry(ID3D12Resource* in_pVertexBuffer, UIN
 //-------------------------------------------------------------------------
 void SceneObjects::BaseObject::SetCommonPipelineState(ID3D12GraphicsCommandList1* in_pCommandList, const SceneObjects::DrawParams& in_drawParams)
 {
-    // if feedback is enabled, 2 things:
-    // 1. tell the tile update manager to queue a readback of the resolved feedback
-    // 2. draw the object with a shader that calls WriteSamplerFeedback()
-    if (m_feedbackEnabled)
+    if (m_useVirtualTexturing)
     {
-        SetRootSigPsoFB(in_pCommandList);
+        // if feedback is enabled, 2 things:
+        // 1. tell the tile update manager to queue a readback of the resolved feedback
+        // 2. draw the object with a shader that calls WriteSamplerFeedback()
+        if (m_feedbackEnabled)
+        {
+            SetRootSigPsoFB(in_pCommandList);
+        }
+        else
+        {
+            SetRootSigPso(in_pCommandList);
+        }
     }
     else
     {
-        SetRootSigPso(in_pCommandList);
+        SetRootSigNoStreaming(in_pCommandList);
     }
     in_pCommandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
@@ -367,17 +486,77 @@ void SceneObjects::BaseObject::Draw(ID3D12GraphicsCommandList1* in_pCommandList,
             m_pTileUpdateManager->QueueFeedback(GetStreamingResource(), feedbackDescriptor);
         }
 
-        // uavs and srvs
-        in_pCommandList->SetGraphicsRootDescriptorTable((UINT)RootSigParams::ParamObjectTextures, in_drawParams.m_srvBaseGPU);
+        ComPtr<ID3D12Resource> textureUploadHeap;
+        if (m_pNonStreamedTexture == nullptr)
+        {
+            ComPtr<ID3D12Device> device;
+            in_pCommandList->GetDevice(IID_PPV_ARGS(&device));
+            GenerateTexture(3840, 1920, 4, device.Get(), in_pCommandList, textureUploadHeap.Get(), &m_pNonStreamedTexture, m_nonStreamedTextureHandle);
+
+
+			//// DirectXTK12 texture uploader
+			//{
+			//	std::unique_ptr<uint8_t[]> decodedData = nullptr;
+			//	D3D12_SUBRESOURCE_DATA subresourceData;
+			//	ThrowIfFailed(DirectX::LoadWICTextureFromFile(device.Get(), L"D:\\MappedFolder\\GitRoot\\SamplerFeedbackStreaming\\TestAssets\\1_earth_4k.jpg", m_pNonStreamedTexture.ReleaseAndGetAddressOf(),
+			//		decodedData, subresourceData));
+
+
+			//	// FR: TODO - Can't do a resource state transition on a closed command list..  Figure out how to open that.  Look in Scene.cpp - Line#1236
+			//	//CD3DX12_RESOURCE_BARRIER barrierTransition = CD3DX12_RESOURCE_BARRIER::Transition(m_pNonStreamedTexture.Get(), D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE, D3D12_RESOURCE_STATE_COPY_SOURCE);
+	  // //         s_commandList->ResourceBarrier(
+			//	//	1
+			//	//	//,&CD3DX12_RESOURCE_BARRIER::Transition(m_pNonStreamedTexture.Get(), D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE, D3D12_RESOURCE_STATE_COPY_SOURCE)
+			//	//	, &barrierTransition
+			//	//);
+
+	  // //         ThrowIfFailed(SaveWICTextureToFile(s_commandQueue.Get(), m_pNonStreamedTexture.Get(), GUID_ContainerFormatJpeg, L"D:\\MappedFolder\\GitRoot\\SamplerFeedbackStreaming\\TestAssets\\saved_earth_4k.jpg",
+	  // //             D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE));
+			//}
+
+			//D3D12_RESOURCE_DESC texDesc = m_pNonStreamedTexture->GetDesc();
+			//// Create the srv for the texture
+			//D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
+			//srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+			//srvDesc.Format = texDesc.Format;
+			//srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+			//srvDesc.Texture2D.MipLevels = texDesc.MipLevels;
+   //         device->CreateShaderResourceView(m_pNonStreamedTexture.Get(), &srvDesc, m_nonStreamedTextureHandle);
+        }
+
+        //if (m_useVirtualTexturing)
+        {
+            // uavs and srvs
+            in_pCommandList->SetGraphicsRootDescriptorTable((UINT)RootSigParams::ParamObjectTextures, in_drawParams.m_srvBaseGPU);
+        }
+        //else
+        //{
+        //    CD3DX12_GPU_DESCRIPTOR_HANDLE nonStreamedTextureHandle(in_drawParams.m_srvBaseGPU, UINT(SceneObjects::Descriptors::HeapOffsetNonStreamedTexture), m_srvUavCbvDescriptorSize);
+        //    //CD3DX12_GPU_DESCRIPTOR_HANDLE nonStreamedTextureHandle(in_drawParams.m_srvBaseGPU, 0, m_srvUavCbvDescriptorSize);
+
+        //    in_pCommandList->SetGraphicsRootDescriptorTable((UINT)RootSigParams::ParamObjectTextures, nonStreamedTextureHandle);
+        //}
+
+		static volatile bool bSaveFile = false;
+		if (bSaveFile)
+		{
+			//ThrowIfFailed(SaveWICTextureToFile(s_commandQueue.Get(), m_pNonStreamedTexture.Get(), GUID_ContainerFormatJpeg, L"D:\\MappedFolder\\GitRoot\\SamplerFeedbackStreaming\\TestAssets\\Saved_texture.jpg",
+            //    D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE));
+
+			ThrowIfFailed(SaveWICTextureToFile(s_commandQueue.Get(), m_pNonStreamedTexture.Get(), GUID_ContainerFormatJpeg, L"D:\\MappedFolder\\GitRoot\\SamplerFeedbackStreaming\\TestAssets\\Saved_texture.jpg",
+				D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE));
+
+            bSaveFile = false;
+		}
 
         ModelConstantData modelConstantData{};
         SetModelConstants(modelConstantData, in_drawParams.m_projection, in_drawParams.m_view);
         UINT num32BitValues = sizeof(ModelConstantData) / sizeof(UINT32);
         in_pCommandList->SetGraphicsRoot32BitConstants((UINT)RootSigParams::Param32BitConstants, num32BitValues, &modelConstantData, 0);
-
-        in_pCommandList->IASetIndexBuffer(&geometry.m_indexBufferView);
-        in_pCommandList->IASetVertexBuffers(0, 1, &geometry.m_vertexBufferView);
-        in_pCommandList->DrawIndexedInstanced(geometry.m_numIndices, 1, 0, 0, 0);
+  
+		in_pCommandList->IASetIndexBuffer(&geometry.m_indexBufferView);
+		in_pCommandList->IASetVertexBuffers(0, 1, &geometry.m_vertexBufferView);
+		in_pCommandList->DrawIndexedInstanced(geometry.m_numIndices, 1, 0, 0, 0);
     }
 }
 
@@ -470,7 +649,9 @@ SceneObjects::Terrain::Terrain(const std::wstring& in_filename,
 {
     D3D12_RASTERIZER_DESC rasterizerDesc = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
     D3D12_DEPTH_STENCIL_DESC depthStencilDesc = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT);
-    CreatePipelineState(L"terrainPS.cso", L"terrainPS-FB.cso", L"terrainVS.cso", in_pDevice, in_sampleCount, rasterizerDesc, depthStencilDesc);
+    CreatePipelineState(L"terrainPS.cso", L"terrainPS-FB.cso",
+        L"terrainPS-NoStreaming.cso",
+        L"terrainVS.cso", in_pDevice, in_sampleCount, rasterizerDesc, depthStencilDesc);
 
     D3D12_INDEX_BUFFER_VIEW indexBufferView{};
     D3D12_VERTEX_BUFFER_VIEW vertexBufferView{};
@@ -554,7 +735,9 @@ SceneObjects::Planet::Planet(const std::wstring& in_filename,
 {
     D3D12_RASTERIZER_DESC rasterizerDesc = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
     D3D12_DEPTH_STENCIL_DESC depthStencilDesc = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT);
-    CreatePipelineState(L"terrainPS.cso", L"terrainPS-FB.cso", L"terrainVS.cso", in_pDevice, in_sampleCount, rasterizerDesc, depthStencilDesc);
+    CreatePipelineState(L"terrainPS.cso", L"terrainPS-FB.cso", 
+        L"terrainPS-NoStreaming.cso",
+        L"terrainVS.cso", in_pDevice, in_sampleCount, rasterizerDesc, depthStencilDesc);
 
     const UINT numLevelsOfDetail = SharedConstants::NUM_SPHERE_LEVELS_OF_DETAIL;
     CreateSphere(this, in_pDevice, in_assetUploader, in_sphereProperties, numLevelsOfDetail);
@@ -592,7 +775,9 @@ SceneObjects::Sky::Sky(const std::wstring& in_filename,
     D3D12_DEPTH_STENCIL_DESC depthStencilDesc = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT);
     depthStencilDesc.DepthEnable = false;
 
-    CreatePipelineState(L"skyPS.cso", L"skyPS-FB.cso", L"skyVS.cso", in_pDevice, in_sampleCount, rasterizerDesc, depthStencilDesc);
+    CreatePipelineState(L"skyPS.cso", L"skyPS-FB.cso",
+        L"terrainPS-NoStreaming.cso",
+        L"skyVS.cso", in_pDevice, in_sampleCount, rasterizerDesc, depthStencilDesc);
 
     SphereGen::Properties sphereProperties;
     sphereProperties.m_numLong = 80;

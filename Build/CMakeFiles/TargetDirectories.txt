@@ -1,0 +1,11 @@
+D:/MappedFolder/GitRoot/SparseVirtualTexture/build/CMakeFiles/XeSSDemo.dir
+D:/MappedFolder/GitRoot/SparseVirtualTexture/build/CMakeFiles/CopyRequiredDLLs.dir
+D:/MappedFolder/GitRoot/SparseVirtualTexture/build/CMakeFiles/ALL_BUILD.dir
+D:/MappedFolder/GitRoot/SparseVirtualTexture/build/CMakeFiles/ZERO_CHECK.dir
+D:/MappedFolder/GitRoot/SparseVirtualTexture/build/MiniEngine/CMakeFiles/MiniEngine.dir
+D:/MappedFolder/GitRoot/SparseVirtualTexture/build/MiniEngine/Dependencies/DirectXMesh/CMakeFiles/DirectXMesh.dir
+D:/MappedFolder/GitRoot/SparseVirtualTexture/build/MiniEngine/Dependencies/DirectXMesh/CMakeFiles/ALL_BUILD.dir
+D:/MappedFolder/GitRoot/SparseVirtualTexture/build/MiniEngine/Dependencies/DirectXTex/CMakeFiles/DirectXTex.dir
+D:/MappedFolder/GitRoot/SparseVirtualTexture/build/MiniEngine/Dependencies/DirectXTex/CMakeFiles/ALL_BUILD.dir
+D:/MappedFolder/GitRoot/SparseVirtualTexture/build/MiniEngine/Dependencies/zlib/CMakeFiles/zlibstatic.dir
+D:/MappedFolder/GitRoot/SparseVirtualTexture/build/MiniEngine/Dependencies/zlib/CMakeFiles/ALL_BUILD.dir

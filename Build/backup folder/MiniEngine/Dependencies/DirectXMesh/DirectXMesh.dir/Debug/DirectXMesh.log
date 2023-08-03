@@ -1,0 +1,19 @@
+﻿  Building Custom Rule D:/MappedFolder/GitRoot/SparseVirtualTexture/MiniEngine/Dependencies/DirectXMesh/CMakeLists.txt
+  cmake_pch.cxx
+  DirectXMeshAdjacency.cpp
+  DirectXMeshClean.cpp
+  DirectXMeshGSAdjacency.cpp
+  DirectXMeshletGenerator.cpp
+  DirectXMeshNormals.cpp
+  DirectXMeshOptimize.cpp
+  DirectXMeshOptimizeLRU.cpp
+  DirectXMeshOptimizeTVC.cpp
+  DirectXMeshRemap.cpp
+  DirectXMeshTangentFrame.cpp
+  DirectXMeshUtil.cpp
+  DirectXMeshValidate.cpp
+  DirectXMeshVBReader.cpp
+  DirectXMeshVBWriter.cpp
+  DirectXMeshWeldVertices.cpp
+  Generating Code...
+  DirectXMesh.vcxproj -> D:\MappedFolder\GitRoot\SparseVirtualTexture\build\MiniEngine\Dependencies\DirectXMesh\Debug\DirectXMesh.lib

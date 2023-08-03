@@ -53,6 +53,9 @@
     <ClCompile Include="AssetUploader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BasicTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BufferViewer.h">
@@ -124,6 +127,15 @@
     <ClInclude Include="AssetUploader.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="stb_image\stb_image.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image\stb_image_write.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicTexture.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shaders\skyPS.hlsl">
@@ -142,6 +154,15 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="shaders\terrainVS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="shaders\modelVS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="shaders\modelPS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="shaders\terrainPS-NoStreaming.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>
@@ -175,6 +196,9 @@
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
+    <None Include="shaders\model.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
 </Project>

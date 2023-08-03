@@ -1,0 +1,13 @@
+prefix=C:/Program Files (x86)/XeSSDemo
+exec_prefix=C:/Program Files (x86)/XeSSDemo
+libdir=C:/Program Files (x86)/XeSSDemo/lib
+sharedlibdir=C:/Program Files (x86)/XeSSDemo/lib
+includedir=C:/Program Files (x86)/XeSSDemo/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.12
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}

@@ -185,7 +185,7 @@ void ParseCommandLine(CommandLineArgs& out_args)
             out_args.m_textures.push_back(textureFileName);
         }, "use only one texture, with this name");
     argParser.AddArg(L"-vsync", out_args.m_vsyncEnabled);
-
+    argParser.AddArg(L"-virtualTexture", out_args.m_useVirtualTexturing);
     argParser.AddArg(L"-heapSizeTiles", out_args.m_streamingHeapSize);
     argParser.AddArg(L"-numHeaps", out_args.m_numHeaps);
 
@@ -474,6 +474,8 @@ void LoadConfigFile(std::wstring& in_configFileName, CommandLineArgs& out_args)
             if (root.isMember("lodBias")) out_args.m_lodBias = root["lodBias"].asFloat();
             if (root.isMember("anisotropy")) out_args.m_anisotropy = root["anisotropy"].asUInt();
 
+            if(root.isMember("virtualTexture")) out_args.m_useVirtualTexturing = root["virtualTexture"].asBool();
+
             if (root.isMember("directStorage")) out_args.m_useDirectStorage = root["directStorage"].asBool();
             if (root.isMember("stagingSizeMB")) out_args.m_stagingSizeMB = root["stagingSizeMB"].asUInt();
 
@@ -585,6 +587,9 @@ int WINAPI WinMain(
         UnregisterClass(wcex.lpszClassName, hInstance);
         return -1;
     }
+    SYSTEMTIME sysTime;
+    GetSystemTime(&sysTime);
+    srand(sysTime.wMilliseconds);
 
     // full screen?
     if (args.m_startFullScreen)

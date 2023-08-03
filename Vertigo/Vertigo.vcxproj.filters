@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Platform\Mouse.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="VertigoApp.cpp" />
+    <ClCompile Include="DirectX\D3DDeviceResources.cpp">
+      <Filter>D3D12</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX\D3DEnvironmentIBL.cpp">
+      <Filter>D3D12</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX\D3DFrameResources.cpp">
+      <Filter>D3D12</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX\D3DMesh.cpp">
+      <Filter>D3D12</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX\D3DTexture.cpp">
+      <Filter>D3D12</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX\D3DTextureSet.cpp">
+      <Filter>D3D12</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiRenderer.cpp" />
+    <ClCompile Include="ThirdParty\imgui\imgui.cpp">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\imgui\imgui_demo.cpp">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\imgui\imgui_draw.cpp">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\imgui\imgui_impl_dx12.cpp">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\imgui\imgui_impl_win32.cpp">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\imgui\imgui_widgets.cpp">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX\D3DEngine.cpp">
+      <Filter>D3D12</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="OrbitCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorBuffer.cpp">
+      <Filter>D3D12</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX\D3DMSAARenderContext.h">
+      <Filter>D3D12</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DirectX\D3DConstants.h">
+      <Filter>D3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\D3DDeviceResources.h">
+      <Filter>D3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\D3DEnvironmentIBL.h">
+      <Filter>D3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\D3DFrameResources.h">
+      <Filter>D3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\D3DGraph.h">
+      <Filter>D3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\D3DMesh.h">
+      <Filter>D3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\D3DMeshInstance.h">
+      <Filter>D3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\D3DRenderContext.h">
+      <Filter>D3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\D3DTexture.h">
+      <Filter>D3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\D3DTextureSet.h">
+      <Filter>D3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\D3DUploadBuffer.h">
+      <Filter>D3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\D3DUtil.h">
+      <Filter>D3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\nlohmann\json.hpp">
+      <Filter>ThirdParty\json</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiRenderer.h" />
+    <ClInclude Include="ThirdParty\imgui\imconfig.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\imgui\imgui.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\imgui\imgui_impl_dx12.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\imgui\imgui_impl_win32.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\imgui\imgui_internal.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\imgui\imstb_rectpack.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\imgui\imstb_textedit.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\imgui\imstb_truetype.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialData.h">
+      <Filter>GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshData.h">
+      <Filter>GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageData.h">
+      <Filter>GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\d3dx12.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\COMUtil.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineOptions.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Mouse.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\platform.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderOptions.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="StepTimer.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="StringFormatter.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\D3DEngine.h">
+      <Filter>D3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="OrbitCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorBuffer.h">
+      <Filter>D3D12</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".clang-format" />
+    <None Include="README.md" />
+    <None Include="DirectX\Shaders\Common.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="DirectX\Shaders\Default.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="DirectX\Shaders\Sky.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="D3D12">
+      <UniqueIdentifier>{bd7c2862-6bac-40db-950d-bfc6fc180a00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{accbb0f6-b39c-4158-88be-b3672a1f9e66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\json">
+      <UniqueIdentifier>{00fe78d1-b437-4ac6-9e93-60116b6842bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{d7d19a7f-3e7e-4448-adef-c512d035fbf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\ImGui">
+      <UniqueIdentifier>{b3be5f01-7321-4af7-b2da-8b30e345b8b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GLTF">
+      <UniqueIdentifier>{0b657053-c0f1-4413-9ddb-8dbd1bbf70b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{ff1f1e06-5272-4973-8615-ebbb37412225}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{127b4704-ac0b-4e0f-ae5c-d22407e828a3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

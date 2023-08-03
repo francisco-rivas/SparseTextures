@@ -1,0 +1,17 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets(2116,5): warning : The referenced project '..\VALAR\VALAR.vcxproj' does not exist.
+  D3DEnvironmentIBL.cpp
+  D3DMesh.cpp
+  D3DEngine.cpp
+  D3DDeviceResources.cpp
+  D3DTexture.cpp
+  D3DTextureSet.cpp
+  ImGuiRenderer.cpp
+  VertigoApp.cpp
+D:\MappedFolder\GitRoot\SamplerFeedbackStreaming\Vertigo\ImGuiRenderer.h(8,10): fatal  error C1083: Cannot open include file: 'VALAR.h': No such file or directory (compiling source file ImGuiRenderer.cpp)
+D:\MappedFolder\GitRoot\SamplerFeedbackStreaming\Vertigo\DirectX\D3DDeviceResources.h(14,10): fatal  error C1083: Cannot open include file: 'VALAR.h': No such file or directory (compiling source file DirectX\D3DTextureSet.cpp)
+D:\MappedFolder\GitRoot\SamplerFeedbackStreaming\Vertigo\DirectX\D3DDeviceResources.h(14,10): fatal  error C1083: Cannot open include file: 'VALAR.h': No such file or directory (compiling source file DirectX\D3DDeviceResources.cpp)
+D:\MappedFolder\GitRoot\SamplerFeedbackStreaming\Vertigo\DirectX\D3DDeviceResources.h(14,10): fatal  error C1083: Cannot open include file: 'VALAR.h': No such file or directory (compiling source file DirectX\D3DTexture.cpp)
+D:\MappedFolder\GitRoot\SamplerFeedbackStreaming\Vertigo\DirectX\D3DDeviceResources.h(14,10): fatal  error C1083: Cannot open include file: 'VALAR.h': No such file or directory (compiling source file DirectX\D3DEnvironmentIBL.cpp)
+D:\MappedFolder\GitRoot\SamplerFeedbackStreaming\Vertigo\DirectX\D3DDeviceResources.h(14,10): fatal  error C1083: Cannot open include file: 'VALAR.h': No such file or directory (compiling source file DirectX\D3DEngine.cpp)
+D:\MappedFolder\GitRoot\SamplerFeedbackStreaming\Vertigo\DirectX\D3DDeviceResources.h(14,10): fatal  error C1083: Cannot open include file: 'VALAR.h': No such file or directory (compiling source file DirectX\D3DMesh.cpp)
+D:\MappedFolder\GitRoot\SamplerFeedbackStreaming\Vertigo\DirectX\D3DDeviceResources.h(14,10): fatal  error C1083: Cannot open include file: 'VALAR.h': No such file or directory (compiling source file VertigoApp.cpp)

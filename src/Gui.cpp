@@ -313,6 +313,8 @@ void Gui::Draw(ID3D12GraphicsCommandList* in_pCommandList,
 
     const UINT indent = 20;
 
+    ImGui::Checkbox("Virtual Texturing", &in_args.m_useVirtualTexturing);
+
     //---------------------------------------------------------------------
     // animation properties. affects bandwidth
     //---------------------------------------------------------------------

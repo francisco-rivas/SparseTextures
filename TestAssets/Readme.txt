@@ -1,0 +1,1 @@
+1_earth_16k.jpg taken from https://www.shadedrelief.com/natural3/pages/textures.html
